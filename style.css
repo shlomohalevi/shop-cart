@@ -22,12 +22,12 @@
   table {
     position: relative;
     display: inline-block;
-    background-color: #fff; /* White background for better contrast */
-    z-index: 2; /* Set z-index to 2 */
+    background-color: #fff; 
+    z-index: 2; 
     color: black;
     padding: 40px;
     margin: 20px;
-    border-collapse: collapse; /* Collapse the borders of the table */
+    border-collapse: collapse; 
     border-radius: 5px;
   }
   thead,tbody{
@@ -36,14 +36,11 @@
   tr{
     
    text-align: center;
-    /* border: red solid 1px; */
     border-bottom: 1px solid gray; 
   }
   th, td {
-   /* background-color: purple; */
     padding: 12px;
     color: rgb(0, 0, 0);
-    /* font-size: 2rem; */
   }
   td img{
   width: 60px;

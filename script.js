@@ -90,7 +90,7 @@ const createCard = (pruduct)=>
     const btn = document.createElement('button')
     if(cart.some(el => el.id == pruduct.id))
     {
-        btn.classList.add('btn','btn-success')
+        btn.classList.add('btn','btn-primary','btn-success')
         btn.innerText = 'added to cart'
     }
     else
@@ -217,11 +217,12 @@ shopButton.addEventListener('click',()=>
     
     cartContainer.classList.remove('hideEl');
     const tbl = document.createElement('table');
+    cartContainer.append(tbl);
     addRowsToTable(tbl);
     addTotalSumToTable(tbl);
     addCloseTblButton(tbl);
-    cartContainer.append(tbl);
-
+    
+    
     
 })
     
@@ -229,42 +230,87 @@ shopButton.addEventListener('click',()=>
     
 
 function addRowToTable(prudoct){
-    let btnplus = document.createElement('button');
+    const btnplus = document.createElement('button');
     btnplus.innerText = '+';
-    
-    // Define event listener for btnplus button
+    btnplus.id = `btnplus${prudoct.id}`
+    btnplus.classList.add('btn')
     btnplus.addEventListener('click', (e) => {
-        e.stopPropagation();
-        console.log('Button clicked!');
-    });
+        prudoct.amount+=1
+        const event = new Event('plusbtnclicked');
+        td3.dispatchEvent(event);
+        td4.dispatchEvent(event)
+        const tbl = document.querySelector('table')
+        addTotalSumToTable(tbl)
+
     
+    });
+
+    const btnminus = document.createElement('button');
+    btnminus.innerText = '-';
+    btnminus.id = `btnminus${prudoct.id}`
+    btnminus.classList.add('btn')
+    btnminus.addEventListener('click', (e) => {
+
+        if (prudoct.amount > 0)
+        {
+            prudoct.amount-=1
+            const tbl = document.querySelector('table')
+            console.log(tbl)
+            addTotalSumToTable(tbl)
+            const event = new Event('minusbtnclicked');
+            td3.dispatchEvent(event)
+            td4.dispatchEvent(event)
+
+
+        }
+    });
+
     const prudoctImg = `<img src="${prudoct.image}" alt="Product Image">`;
     const row = document.createElement('tr');
-
+    
     const td1 = document.createElement('td');
     td1.innerText = `${prudoct.name}`;
     row.append(td1);
-
+    
     const td2 = document.createElement('td');
     td2.innerText = `${prudoct.cat}`;
     row.append(td2);
-
+    
     const td3 = document.createElement('td');
     td3.innerText = `${prudoct.amount * prudoct.price}`;
+    td3.addEventListener('plusbtnclicked', ()=> {
+        td3.innerText= `${prudoct.amount * prudoct.price}`;
+    });
+    td3.addEventListener('minusbtnclicked', ()=> {
+        td3.innerText= `${prudoct.amount * prudoct.price}`;
+    });
+       
     row.append(td3);
-
     const td4 = document.createElement('td');
-    td4.innerText = `${prudoct.amount}`;
-    td4.append(btnplus); 
+    td4.append(btnminus); 
+    td4.insertAdjacentText('beforeend',prudoct.amount)
+    td4.append(btnplus);
+    td4.addEventListener('plusbtnclicked', ()=> {
+        td4.innerHTML = ''
+        td4.append(btnminus); 
+        td4.insertAdjacentText('beforeend',prudoct.amount)
+        td4.append(btnplus);
+    });
+    td4.addEventListener('minusbtnclicked', ()=> {
+        td4.innerHTML = ''
+        td4.append(btnminus); 
+        td4.insertAdjacentText('beforeend',prudoct.amount)
+        td4.append(btnplus);
+    });
     row.append(td4);
-
+    
     const td5 = document.createElement('td');
     td5.innerHTML = prudoctImg;
     row.append(td5);
-
     return row;
 }
 
+    
 function addRowsToTable(tbl)
 {
     const headerContent = `
@@ -281,27 +327,35 @@ function addRowsToTable(tbl)
     `;
     tbl.innerHTML = headerContent;
     const tbody = document.createElement('tbody');
-    
     addContent(tbl,tbody);
+
     cart.forEach((el)=>
     {
         const row = addRowToTable(el);
         tbody.append(row);
+
         
     })
 
 }
 function addTotalSumToTable(tbl)
 {
+    let totalEl = tbl.querySelector('#totalPrice')
+    if(!totalEl)
+    {
+        totalEl = document.createElement('div')
+        totalEl.id = 'totalPrice'
+        tbl.append(totalEl)
+    }
+
+    totalEl.innerText = ''
     const total  = cart.reduce((sum,current)=>
     {
         return sum + current.amount*current.price
         
     },0)
-    tbl.innerHTML+=
-    `<div>
-    total price:${total}$
-    </div>`;
+    
+    totalEl.innerText = `Total price: ${total}$`;
 
 }
 function addCloseTblButton(tbl){
@@ -317,9 +371,14 @@ function addCloseTblButton(tbl){
     tbl.append(closeCart)
 
 }
-
-
 render(data,contentEl)                
+    
+    
+    
+    
+      
+
+
 
 
 
