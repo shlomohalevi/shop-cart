@@ -4,60 +4,61 @@ const data = [
         "cat":"food",
         "name":"Milk",
         "price":"6",
-        "image":"https://cdn.pixabay.com/photo/2017/07/05/15/41/milk-2474993_150.jpg"
+        "image":"https://images.unsplash.com/photo-1559598467-f8b76c8155d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTcxMDcxOTMxNg&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080"
     },
     {
        "id":"2",
         "cat":"food",
         "name":"Bread",
         "price":"8",
-        "image":"https://cdn.pixabay.com/photo/2014/07/22/09/59/bread-399286_150.jpg"
+        "image":"https://plus.unsplash.com/premium_photo-1663851785132-d0372e7801ca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTcxMDcxOTIxNQ&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080"
     },
     {
        "id":"4",
         "cat":"food",
         "name":"Eggs",
         "price":"12",
-        "image":"https://cdn.pixabay.com/photo/2015/09/17/17/19/egg-944495_150.jpg"
+        "image":"https://images.unsplash.com/photo-1593462430565-94f606c65e71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTcxMDcxODk5Ng&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080"
     },
     {
        "id":"3",
         "cat":"clothing",
         "name":"Coat",
         "price":"120",
-        "image":"https://cdn.pixabay.com/photo/2015/05/29/19/19/person-789663_150.jpg"
+        "image":"https://images.unsplash.com/photo-1520484205608-f65d27ad0765?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTcxMDcyMDE1MQ&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080"
     },
     {
        "id":"5",
         "cat":"clothing",
         "name":"Dress",
         "price":"4000",
-        "image":"https://cdn.pixabay.com/photo/2016/06/29/04/17/wedding-dresses-1485984_150.jpg"
+        "image":"https://plus.unsplash.com/premium_photo-1670430623154-24626c42fb33?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTcwODQzNzc2NQ&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080"
     },
     {
        "id":"6",
         "cat":"clothing",
         "name":"Shirt",
         "price":"70",
-        "image":"https://cdn.pixabay.com/photo/2014/08/05/10/31/waiting-410328_150.jpg"
+        "image":"https://images.unsplash.com/photo-1602810319428-019690571b5b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTcxMDcxOTk1Ng&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080"
     },
     {
        "id":"7",
         "cat":"animals",
         "name":"Dog food",
         "price":"70",
-        "image":"https://cdn.pixabay.com/photo/2017/04/07/10/53/dog-2210717_150.jpg"
+        "image":"https://images.unsplash.com/photo-1608408891486-f5cade977d19?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTcxMDcxOTY3OA&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080"
     },
     {
         "id":"8",
         "cat":"animals",
         "name":"Cat toy",
         "price":"50",
-        "image":"https://cdn.pixabay.com/photo/2018/07/21/09/17/cat-3552143_150.jpg"
+        "image":"https://images.unsplash.com/photo-1618500299034-abce7ed0e8df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTcxMDcxOTU5Ng&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080"
     }
 ]
 const contentEl = document.querySelector('#content')
 const sortSelector = document.querySelector('#sort')
+console.log(sortSelector)
 const userInput = document.querySelector('#userinput')
 const checkContainer = document.querySelector('#checkboxes-container')
 let activeDataOnPage = data
@@ -84,18 +85,20 @@ const createCard = (pruduct)=>
     <img src = "${pruduct.image}" class="card-img-top" alt = "${pruduct.image}">
     <div class = "card-body">
     <h5 class = "card-title">${pruduct.name}</h5>
-    <p class = "card-text">price:${pruduct.price}</p>
+    <p class = "card-text">price: ${pruduct.price}$</p>
     </div>
     `
     const btn = document.createElement('button')
+    btn.classList.add('bg-blue-gray-hover')
+
     if(cart.some(el => el.id == pruduct.id))
     {
-        btn.classList.add('btn','btn-primary','btn-success')
+        btn.classList.add('bg-blue-gray')
         btn.innerText = 'added to cart'
     }
     else
     {
-        btn.classList.add('btn', 'btn-primary')
+        btn.classList.add('bg-navy-color')
         btn.innerHTML = 'buy now'
     }
 
@@ -121,7 +124,7 @@ const render = (data , holder)=>
     {
         sorting(data,requieredSorting)
         data.map(product => {
-            const col = createCol('col-md-3 pt-5');
+            const col = createCol('col-md-3 pt-4');
             const card = createCard(product);
             const colAndCard = addContent(col,card);
             addContent(holder, colAndCard);
@@ -186,15 +189,18 @@ const addToCart =(e)=>
     {
         prudoct = {...prudoct, amount : 1}
         cart.push(prudoct)
-        e.target.classList.add('btn-success')
+        e.target.classList.remove('bg-navy-color')
+        e.target.classList.add('bg-blue-gray')
         e.target.innerText = 'added to cart'
     }
     else
     {
         const indexToRemove = cart.findIndex(item => item.id === prudoct.id);
         cart.splice(indexToRemove,1)
-        e.target.classList.remove('btn-success')
+        e.target.classList.remove('bg-blue-gray')
+        e.target.classList.add('bg-navy-color')
         e.target.innerText = 'buy now'
+
     }
 }
 
@@ -217,6 +223,7 @@ shopButton.addEventListener('click',()=>
     
     cartContainer.classList.remove('hideEl');
     const tbl = document.createElement('table');
+    tbl.className = 'open-tbl-animation'
     cartContainer.append(tbl);
     addRowsToTable(tbl);
     addTotalSumToTable(tbl);
@@ -364,6 +371,7 @@ function addCloseTblButton(tbl){
     closeCart.classList.add('btn','close-cart-btn')
     closeCart.addEventListener('click',()=>
     {
+        tbl.className = 'close-tbl-animation'
         tbl.remove()
         cartContainer.classList.add('hideEl')
     

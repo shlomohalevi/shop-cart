@@ -2,18 +2,23 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Alkatra", system-ui;
+
+}
+body{
+  background-color: whitesmoke;
 }
 .cart-Background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
   }
   .hideEl{
     display: none;
@@ -51,16 +56,82 @@
   #cart-button{
    position: fixed;
    z-index: 1;
-   top:2%;
-   right: 10%;
+   top:25px;
+   right: 130px;
    font-size: 2em;
    padding: 0 5px;
    border-style: none;
+   /* background-color: rgba(255, 255, 255, 0.5); */
+   border-radius: 20%;
+
   }
+
+   
   .close-cart-btn{
     position: absolute;
     top:0;
     left: 0;
     font-size: 1.5em;
   }
+  #sort{
+    outline: none; 
+    border: 1px solid #e8e9ed;
+    border-radius: 5px;
+    padding: 2px 5px;
+    /* background-color: red; */
+
+  }
+  .open-tbl-animation {
+    animation: zoom-in 0.2s ease-out ;
+  }
+  .card{
+    border-radius: 5px;
+  }
+  .card img{
+    height: 200px;
+    object-fit: cover;
+
+  }
+  .card button{
+    border-radius:0 0 3px 3px;
+    border: none;
+    padding: 10px 0;
+  }
+  .navy-color{
+    color: #091235;
+  }
+  .bg-blue-gray-hover:hover
+  {
+    transition: all 0.3s;
+    background-color: #88A9C3;
+    color: #091235;
+  }
+  .bg-navy-color{
+    background-color: #091235;
+    color: white;
+
+  }
+  .bg-blue-gray{
+    background-color: #88A9C3;
+    color: #091235;
+  }
+
   
+
+    
+
+
+  
+
+  
+   @keyframes zoom-in {
+    0% {
+      transform: scale(0.5,0.5);
+    }
+    50% {
+      transform: scale(0.75, 0.75);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
+  }
