@@ -54,8 +54,7 @@ body{
   object-fit: cover;
   }
   #cart-button{
-   position: sticky;
-   z-index: 1;
+    z-index: 1;
    /* top:3vh;
    right: 8vw; */
    font-size: 2em;
